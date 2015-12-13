@@ -11,11 +11,6 @@ import java.util.List;
  */
 @XStreamAlias("trk")
 public class Trajeto {
-    /**
-     * Atributo utilizado para que o XStream ignore a tag gpx
-     */
-    @XStreamOmitField
-    private Object gpx;
     @XStreamAlias("name")
     private String nome;
     @XStreamImplicit
