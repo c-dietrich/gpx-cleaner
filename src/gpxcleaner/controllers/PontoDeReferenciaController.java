@@ -26,7 +26,7 @@ public class PontoDeReferenciaController {
             double distanciaEntreDoisPontosDeReferencia = calcularDistanciaEntreDoisPontosDeReferencia(pontosDeReferencia.get(i), pontosDeReferencia.get(i+1));
             if(distanciaEntreDoisPontosDeReferencia <= quilometragemMaximaDesejada){
                 pontosDeReferencia.remove(i+1);
-                i = 1;
+                i = 0;
             }
         }
 
