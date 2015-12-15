@@ -18,12 +18,27 @@ public class TrajetoController {
     /**
      * Reduz o trajeto com base na quilometragem máxima entre dois pontos
      */
-    //TODO-implementar função reduzirTrajetoQuilometragem
     public void reduzirTrajetoQuilometragem(Float quilometragemMaximaDesejada, String caminhoOrigem, String caminhoDestino){
         try {
             Trajeto trajeto = obtemTrajetoGpx(caminhoOrigem);
             List<PontoDeReferencia> pontosDeReferencia = obtemPontosDeReferencia(trajeto);
             List<PontoDeReferencia> pontosDeReferenciaReduzido = pontoDeReferenciaController.eliminarPontosDeReferenciaPorQuilometragem(quilometragemMaximaDesejada, pontosDeReferencia);
+            gerarArquivoGpx(caminhoDestino, pontosDeReferenciaReduzido);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Reduz o trajeto com base na porcentagem
+     */
+    public void reduzirTrajetoPorcentagem(Float porcentagem, String caminhoOrigem, String caminhoDestino){
+        try {
+            Trajeto trajeto = obtemTrajetoGpx(caminhoOrigem);
+            List<PontoDeReferencia> pontosDeReferencia = obtemPontosDeReferencia(trajeto);
+            float quantidadeDePontosParaEliminar = obtemQuantidadeDePontosQueDevemSerEliminados(porcentagem, pontosDeReferencia.size());
+            List<PontoDeReferencia> pontosDeReferenciaReduzido = pontoDeReferenciaController.eliminarPontosDeReferenciaPorPorcentagem(quantidadeDePontosParaEliminar, pontosDeReferencia);
             gerarArquivoGpx(caminhoDestino, pontosDeReferenciaReduzido);
         }
         catch (Exception e){
@@ -84,5 +99,14 @@ public class TrajetoController {
         }
 
         return pontosDeReferencia;
+    }
+
+    /**
+     * Obtem quantidade de pontos a ser removida a partir da porcentagem passada
+     */
+    private float obtemQuantidadeDePontosQueDevemSerEliminados(float porcentagem, int quantidadeDePontos){
+        float quatidadeDePontosASerRemovida = (porcentagem * quantidadeDePontos) / 100;
+
+        return Math.round(quatidadeDePontosASerRemovida);
     }
 }
