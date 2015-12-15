@@ -21,14 +21,12 @@ public class TrajetoController {
         try {
             Trajeto trajeto = obtemTrajetoGpx(caminhoOrigem);
             List<PontoDeReferencia> pontosDeReferencia = obtemPontosDeReferencia(trajeto);
-            System.out.println("Total de pontos: " + pontosDeReferencia.size());
-            List<PontoDeReferencia> pontosDeReferenciaReduzido = pontoDeReferenciaController.eliminarPontosDeReferenciaPorQuilometragem(pontosDeReferencia);
+            List<PontoDeReferencia> pontosDeReferenciaReduzido = pontoDeReferenciaController.eliminarPontosDeReferenciaPorQuilometragem(quilometragemMaximaDesejada, pontosDeReferencia);
         }
         catch (Exception e){
             System.out.println(e);
         }
     }
-
 
     /**
      * Obtem um trajeto apartir de um arquivo GPX
@@ -37,7 +35,7 @@ public class TrajetoController {
         FileReader arquivoFormatoGpx = new FileReader(caminhoArquivo);
 
         XStream xStream = new XStream();
-        xStream.processAnnotations(ArquivoGpx.class );
+        xStream.processAnnotations(ArquivoGpx.class);
         xStream.processAnnotations(Trajeto.class);
         xStream.processAnnotations(Segmento.class);
         xStream.processAnnotations(PontoDeReferencia.class);
