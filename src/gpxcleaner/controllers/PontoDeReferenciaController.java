@@ -6,6 +6,19 @@ import java.util.List;
 
 public class PontoDeReferenciaController {
     /**
+     * Implementação singleton PontoDeReferenciaController
+     */
+    private static PontoDeReferenciaController instance = null;
+
+    public static PontoDeReferenciaController getInstance()
+    {
+        if (instance == null)
+            instance = new PontoDeReferenciaController();
+
+        return instance;
+    }
+
+    /**
      * Reduz o trajeto com base na quilometragem máxima entre dois pontos
      */
     public List<PontoDeReferencia> eliminarPontosDeReferenciaPorQuilometragem(Float quilometragemMaximaDesejada, List<PontoDeReferencia> pontosDeReferencia){

@@ -1,7 +1,21 @@
 package gpxcleaner.controllers;
 
 public class ArquivoGpxController {
-    TrajetoController trajetoController = new TrajetoController();
+    TrajetoController trajetoController = TrajetoController.getInstance();
+
+    /**
+     * Implementação singleton ArquivoGpxController
+     */
+    private static ArquivoGpxController instance = null;
+
+    public static ArquivoGpxController getInstance()
+    {
+        if (instance == null)
+            instance = new ArquivoGpxController();
+
+        return instance;
+    }
+
     public void gerarArquivoReduzido(String valor, String caminhoOrigem, String caminhoDestino){
         String tipoDeReducao = obterTipoDeReducao(valor);
 

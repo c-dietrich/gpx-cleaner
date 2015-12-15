@@ -14,7 +14,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrajetoController {
-    PontoDeReferenciaController pontoDeReferenciaController = new PontoDeReferenciaController();
+    PontoDeReferenciaController pontoDeReferenciaController = PontoDeReferenciaController.getInstance();
+
+    /**
+     * Implementação singleton TrajetoController
+     */
+    private static TrajetoController instance = null;
+
+    public static TrajetoController getInstance()
+    {
+        if (instance == null)
+            instance = new TrajetoController();
+
+        return instance;
+    }
+
     /**
      * Reduz o trajeto com base na quilometragem máxima entre dois pontos
      */

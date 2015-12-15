@@ -5,7 +5,7 @@ import gpxcleaner.controllers.ArquivoGpxController;
 public class Main {
 
     public static void main(String[] args) {
-        ArquivoGpxController arquivoGpxController = new ArquivoGpxController();
+        ArquivoGpxController arquivoGpxController = ArquivoGpxController.getInstance();
         String valor = args[0];
         String caminhoOrigem = args[1];
         String caminhoDestino = args[2];
