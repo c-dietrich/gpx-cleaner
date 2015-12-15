@@ -21,6 +21,9 @@ public class PontoDeReferenciaController {
         return pontosDeReferencia;
     }
 
+    /**
+     * Calcula a distância entre dois pontos
+     */
     private Double calcularDistanciaEntreDoisPontosDeReferencia(PontoDeReferencia ponto1, PontoDeReferencia ponto2){
         Double a = Math.pow((ponto1.getLatitude() - ponto2.getLatitude()), 2);
         Double b = Math.pow((ponto1.getLongitude() - ponto2.getLongitude()), 2);

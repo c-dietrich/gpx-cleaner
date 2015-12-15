@@ -1,6 +1,5 @@
 package gpxcleaner.controllers;
 
-
 public class ArquivoGpxController {
     TrajetoController trajetoController = new TrajetoController();
     //TODO-implementar função que reduz o arquivo gpx
@@ -8,7 +7,7 @@ public class ArquivoGpxController {
         String tipoDeReducao = obterTipoDeReducao(valor);
 
         if (tipoDeReducao.equals("quilometragem")) {
-            reducacaoPorQuilometragem(valor, caminhoOrigem);
+            reducacaoPorQuilometragem(valor, caminhoOrigem, caminhoDestino);
         }
         else if(tipoDeReducao.equals("porcentagem")){
             reducacaoPorPorcentagem();
@@ -25,10 +24,9 @@ public class ArquivoGpxController {
     /**
      * Realiza a redução do arquivo eliminando os pontos com base na quilometragem passada
      */
-    //TODO-implemetar função reducacaoPorQuilometragem
-    private void reducacaoPorQuilometragem(String valor, String caminhoOrigem){
+    private void reducacaoPorQuilometragem(String valor, String caminhoOrigem, String caminhoDestino){
         float quilometragemMaximaDesejada = Float.parseFloat(valor);
-        trajetoController.reduzirTrajetoQuilometragem(quilometragemMaximaDesejada, caminhoOrigem);
+        trajetoController.reduzirTrajetoQuilometragem(quilometragemMaximaDesejada, caminhoOrigem, caminhoDestino);
     }
 
     /**
