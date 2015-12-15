@@ -51,7 +51,7 @@ public class TrajetoController {
     }
 
     /**
-     * Gera um arquivo gpx apartir de um trajeto
+     * Gera um arquivo gpx
      */
     private void gerarArquivoGpx(String caminho, List<PontoDeReferencia> pontosDeReferencia) throws IOException{
         FileOutputStream fileOutputStream = new FileOutputStream(caminho);

@@ -25,9 +25,35 @@ public class PontoDeReferenciaController {
      * Calcula a distância entre dois pontos
      */
     private Double calcularDistanciaEntreDoisPontosDeReferencia(PontoDeReferencia ponto1, PontoDeReferencia ponto2){
-        Double a = Math.pow((ponto1.getLatitude() - ponto2.getLatitude()), 2);
-        Double b = Math.pow((ponto1.getLongitude() - ponto2.getLongitude()), 2);
-        Double distancia = Math.sqrt(a + b);
+        Double x1 = ponto1.getLatitude();
+        Double x2 = ponto2.getLatitude();
+        Double y1 = ponto1.getLongitude();
+        Double y2 = ponto2.getLongitude();
+
+        // Distancia entre os 2 pontos no plano cartesiano ( pitagoras )
+        //double distancia = System.Math.Sqrt( System.Math.Pow( (x2 - x1), 2 ) + System.Math.Pow( (y2 - y1), 2 ) );
+
+        // ARCO AB = c
+        double c = 90 - (y2);
+
+        // ARCO AC = b
+        double b = 90 - (y1);
+
+        // Arco ABC = a
+        // Diferença das longitudes:
+        double a = x2 - x1;
+
+        // Formula: cos(a) = cos(b) * cos(c) + sen(b)* sen(c) * cos(A)
+        double cos_a = Math.cos(b) * Math.cos(c) + Math.sin(c) * Math.sin(b) * Math.cos(a);
+
+        double arc_cos = Math.acos(cos_a);
+
+        // 2 * pi * Raio da Terra = 6,28 * 6.371 = 40.030 Km
+        // 360 graus = 40.030 Km
+        // 3,2169287 = x
+        // x = (40.030 * 3,2169287)/360 = 357,68 Km
+
+        double distancia = (40030 * arc_cos) / 360;
 
         return distancia;
     }
