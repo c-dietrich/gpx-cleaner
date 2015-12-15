@@ -4,6 +4,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,17 @@ public class Trajeto {
     private String nome;
     @XStreamImplicit
     private List<Segmento> segmentos;
+
+    public Trajeto() {
+
+    }
+
+    public Trajeto(String nome, Segmento segmento) {
+        List<Segmento> segmentos = new ArrayList<>();
+        segmentos.add(segmento);
+        this.nome = nome;
+        this.setSegmentos(segmentos);
+    }
 
     public String getNome() {
         return nome;

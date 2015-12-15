@@ -13,6 +13,14 @@ public class Segmento {
     @XStreamImplicit
     List<PontoDeReferencia> pontosDeReferencia;
 
+    public Segmento() {
+
+    }
+
+    public Segmento(List<PontoDeReferencia> pontosDeReferencia) {
+        this.pontosDeReferencia = pontosDeReferencia;
+    }
+
     public List<PontoDeReferencia> getPontosDeReferencia() {
         return pontosDeReferencia;
     }
